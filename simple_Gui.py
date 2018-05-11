@@ -7,6 +7,7 @@ except ImportError:
     from tkinter import *   ## notice lowercase 't' in tkinter here
 
 import time, winsound
+from threading import *
 
 
 class Application(Frame):
@@ -44,10 +45,11 @@ class Application(Frame):
 
     def play_sound_pause(self):
         print(time.time())
-        Timer(2, sound(), ()).start()
+        Timer(2, self.sound(), ()).start()
        
     def sound(self):
         winsound.PlaySound('2.wav', winsound.SND_FILENAME)
+        self.textfield.insert(0.0, "Total Clicks: " + str(self.button_clicks))
 
 
 root = Tk()
